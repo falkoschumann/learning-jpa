@@ -3,6 +3,8 @@ Learning JPA [![Build Status](https://travis-ci.org/falkoschumann/learning-jpa.p
 
 Learning Java Persistence API (JPA) with learning tests.
 
+The use of create, retrieve, update and delete show the `CrudTest` class.
+
 
 Common Practice
 ---------------
