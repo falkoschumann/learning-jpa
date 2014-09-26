@@ -1,4 +1,4 @@
-Learning JPA [![Build Status](https://travis-ci.org/falkoschumann/learning-jpa.png?branch=develop)](https://travis-ci.org/falkoschumann/learning-jpa)
+Learning JPA [![Build Status](https://travis-ci.org/falkoschumann/learning-jpa.png?branch=master)](https://travis-ci.org/falkoschumann/learning-jpa)
 ============
 
 Learning Java Persistence API (JPA) with learning tests.
