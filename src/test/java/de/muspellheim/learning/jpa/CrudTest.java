@@ -50,7 +50,7 @@ public class CrudTest {
     }
 
     /**
-     * Without transaction the persisted entity is not write to database.
+     * Without transaction the persisted entity is not written to database.
      */
     @Test(expected = AssertionError.class)
     public void testCreate_PersistWithoutTransaction() {
@@ -143,7 +143,7 @@ public class CrudTest {
     }
 
     /**
-     * Without transaction the updated entity is not synchronize with database.
+     * Without transaction the updated entity is not synchronized with database.
      */
     @Test(expected = AssertionError.class)
     public void testUpdate_MergeWithoutTransaction() {
@@ -178,6 +178,44 @@ public class CrudTest {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         em.merge(contact);
+        tx.commit();
+        em.close();
+    }
+
+    /**
+     * Without transaction the removed entity is not removed from database.
+     */
+    @Test(expected = AssertionError.class)
+    public void testDelete_RemoveWithoutTransaction() {
+        create(createAlice());
+        create(createBob());
+
+        Contact alice = retrieveWithId("Alice");
+        EntityManager em = emf.createEntityManager();
+        em.remove(em.merge(alice));
+        em.close();
+
+        List<Contact> contactList = retrieveAll();
+        assertThat(contactList, contains(hasProperty("name", is("Bob"))));
+    }
+
+    @Test
+    public void testDelete() {
+        create(createAlice());
+        create(createBob());
+
+        Contact alice = retrieveWithId("Alice");
+        delete(alice);
+
+        List<Contact> contactList = retrieveAll();
+        assertThat(contactList, contains(hasProperty("name", is("Bob"))));
+    }
+
+    private void delete(Contact contact) {
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.remove(em.merge(contact));
         tx.commit();
         em.close();
     }
