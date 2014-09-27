@@ -1,21 +1,15 @@
 package de.muspellheim.learning.jpa;
 
-import org.hamcrest.Matcher;
-import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.allOf;
-import static org.hamcrest.CoreMatchers.both;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -150,13 +144,13 @@ public class CrudTest {
         create(createAlice());
         create(createBob());
 
-        Contact alice = retrieveWithId("Alice");
+        Contact alice = retrieveWithId("Bob");
         alice.setEmail("noreply@test.com");
         EntityManager em = emf.createEntityManager();
         em.merge(alice);
         em.close();
 
-        Contact actual = retrieveWithId("Alice");
+        Contact actual = retrieveWithId("Bob");
         assertThat(actual, hasProperty("email", is("noreply@test.com")));
     }
 
@@ -165,11 +159,11 @@ public class CrudTest {
         create(createAlice());
         create(createBob());
 
-        Contact alice = retrieveWithId("Alice");
+        Contact alice = retrieveWithId("Bob");
         alice.setEmail("noreply@test.com");
         update(alice);
 
-        Contact actual = retrieveWithId("Alice");
+        Contact actual = retrieveWithId("Bob");
         assertThat(actual, hasProperty("email", is("noreply@test.com")));
     }
 
