@@ -6,6 +6,20 @@ Learning Java Persistence API (JPA) with learning tests.
 The use of create, retrieve, update and delete show the `CrudTest` class.
 
 
+Online Documentation
+--------------------
+
+  - [Java Persistence API][1], JavaDoc from Java EE 7 specification
+  - [Hibernate ORM documentation][2]
+
+
+To-do
+-----
+
+ - Test exception handling
+ - Test handling entity manager
+
+
 Common Practice
 ---------------
 
@@ -31,3 +45,7 @@ In a non-managed environment you can use the following pattern:
     } finally {
         em.close();
     }
+
+
+[1]: http://docs.oracle.com/javaee/7/api/javax/persistence/package-summary.html
+[2]: http://hibernate.org/orm/documentation
